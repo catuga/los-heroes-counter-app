@@ -1,7 +1,7 @@
 export default {
   target: "static",
   router: {
-    base: "http://catuga.github.io/",
+    base: "https://los-heroes-counter-app.onrender.com/",
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

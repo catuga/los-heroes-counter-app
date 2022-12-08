@@ -31,11 +31,11 @@ export const mutations = {
       display: "grid",
     });
     nuxtStorage.localStorage.setData("counter", state.list);
-    const localStorageCounter = nuxtStorage.localStorage.getData("counter");
   },
 
   decreaseCounter(state, index) {
     state.list[index].value--;
+    nuxtStorage.localStorage.setData("counter", state.list);
   },
 
   filterByValue(state) {
@@ -46,10 +46,12 @@ export const mutations = {
           else counter.display = "grid";
         })
       : [];
+    nuxtStorage.localStorage.setData("counter", state.list);
   },
 
   incrementCounter(state, index) {
     state.list[index].value++;
+    nuxtStorage.localStorage.setData("counter", state.list);
   },
 
   loadCounterList(state, list) {
@@ -58,6 +60,7 @@ export const mutations = {
 
   removeCounter(state, index) {
     state.list.splice(index, 1);
+    nuxtStorage.localStorage.setData("counter", state.list);
   },
 
   resetFilters(state) {
@@ -75,6 +78,7 @@ export const mutations = {
     } else if (sortOrder === "desc") {
       state.list.sort((a, b) => (a[sortKey] > b[sortKey] ? -1 : 1));
     }
+    nuxtStorage.localStorage.setData("counter", state.list);
   },
 
   updateMinValue(state, minValue) {

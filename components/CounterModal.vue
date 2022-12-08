@@ -3,25 +3,32 @@
     <div class="modal" @click.stop>
       <h3>Agregar nuevo contador</h3>
       <input v-model="inputValue" placeholder="Counter name" />
-      <button @click="$emit('close-modal')">Cancel</button>
-      <button @click="$emit('close-modal', true)" :disabled="(inputValue === '' || inputValue.length > 20)">Add counter</button>
+      <div>
+        <button @click="$emit('close-modal')">Cancel</button>
+        <button
+          @click="$emit('close-modal', true)"
+          :disabled="inputValue === '' || inputValue.length > 20"
+        >
+          Add counter
+        </button>
+      </div>
     </div>
   </div>
 </template>
-  
+
 <script>
 export default {
   computed: {
     inputValue: {
       get() {
-        return this.$store.state.inputValue
+        return this.$store.state.inputValue;
       },
       set(value) {
-        this.$store.commit('updateInputValue', value)
-      }
-    }
-  }
-}
+        this.$store.commit("updateInputValue", value);
+      },
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -39,15 +46,21 @@ export default {
 .modal {
   text-align: center;
   background-color: white;
-  height: 500px;
+  height: 150px;
   width: 500px;
   margin-top: 10%;
   padding: 60px 0;
   border-radius: 20px;
+  background-color: hsl(269deg 100% 32%);
+  color: white;
 }
 
 .close {
   margin: 10% 0 0 16px;
   cursor: pointer;
+}
+
+input {
+  margin-bottom: 20px;
 }
 </style>

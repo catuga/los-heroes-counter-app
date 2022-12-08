@@ -103,7 +103,7 @@ export default {
     },
     ...mapGetters(["countersSum"]),
   },
-  created() {
+  mounted() {
     this.fetchCounter();
   },
   methods: {

@@ -2,26 +2,7 @@ export const state = () => ({
     inputValue: '',
     minValue: null,
     maxValue: null,
-    list: [
-        {
-            display: 'block',
-            name: 'a',
-            index: 0,
-            value: 3
-        },
-        {
-            display: 'block',
-            name: 'b',
-            index: 1,
-            value: 2
-        },
-        {
-            display: 'block',
-            name: 'c',
-            index: 2,
-            value: 11
-        }
-    ]
+    list: []
 })
 
 export const getters = {
@@ -59,6 +40,10 @@ export const mutations = {
         state.list[index].value++
     },
 
+    loadCounterList(state, list) {
+        state.list = list
+    },
+
     removeCounter(state, index) {
         state.list.splice(index, 1)
     },
@@ -93,10 +78,25 @@ export const mutations = {
 
 // @TODO
 export const actions = {
-    async fetchCounter({ state }) {
-        // make request
-        const res = { data: 10 };
-        state.counter = res.data;
-        return res.data;
+    async fetchCounter(context) {
+        const res = [{
+            display: 'block',
+            name: 'a',
+            index: 0,
+            value: 3
+        },
+        {
+            display: 'block',
+            name: 'b',
+            index: 1,
+            value: 2
+        },
+        {
+            display: 'block',
+            name: 'c',
+            index: 2,
+            value: 11
+        }]
+        context.commit('loadCounterList', res);
     }
 }

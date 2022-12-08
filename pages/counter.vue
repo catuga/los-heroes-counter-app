@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>Los Héroes Counter App</h1>
-
     <header>
       <button @click="sortByName('asc', 'name')">Ordenar ascendente por nombre</button>
       <button @click="sortByName('desc', 'name')">Ordenar descendente por nombre</button>
@@ -18,12 +16,12 @@
     </header>
 
     <ul>
-      <h2>Lista de contadores</h2>
       <li v-for="({ name, value, display }, index) in counters" :key="index" :style="{ display }">
-        <p>Nombre: {{ name }}</p>
-        <p>Valor: {{ value }}</p>
+        <span>{{ name }}</span>
         <button @click="incrementCounter(index)">+</button>
+        <span>{{ value }}</span>
         <button @click="decreaseCounter(index)">-</button>
+        
         <button @click="removeCounter(index)">Eliminar contador</button>
       </li>
       <hr />
@@ -37,7 +35,7 @@
 </template>
   
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -67,7 +65,12 @@ export default {
     },
     ...mapGetters(['countersSum'])
   },
+  created() {
+    this.fetchCounter();
+  },
   methods: {
+    ...mapActions(['fetchCounter']),
+  
     // Adds counter
     addCounter(name, index) {
       if (this.counters.length < 20) {
@@ -125,3 +128,12 @@ export default {
   }
 }
 </script>
+
+<style>
+ul {
+  padding-left: 0;
+}
+ul li {
+  display: inline;
+}
+</style>

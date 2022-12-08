@@ -1,4 +1,8 @@
 export default {
+  target: "static",
+  router: {
+    base: "http://catuga.github.io/",
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "los-heroes-counter-app",

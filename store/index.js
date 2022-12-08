@@ -1,3 +1,5 @@
+import nuxtStorage from "nuxt-storage";
+
 export const state = () => ({
   inputValue: "",
   minValue: null,
@@ -26,7 +28,10 @@ export const mutations = {
       name,
       value: 0,
       index,
+      display: "grid",
     });
+    nuxtStorage.localStorage.setData("counter", state.list);
+    const localStorageCounter = nuxtStorage.localStorage.getData("counter");
   },
 
   decreaseCounter(state, index) {
@@ -74,10 +79,12 @@ export const mutations = {
 
   updateMinValue(state, minValue) {
     state.minValue = minValue;
+    nuxtStorage.sessionStorage.setData("minValue", minValue);
   },
 
   updateMaxValue(state, maxValue) {
     state.maxValue = maxValue;
+    nuxtStorage.sessionStorage.setData("maxValue", maxValue);
   },
 
   updateInputValue(state, inputValue) {
@@ -87,80 +94,10 @@ export const mutations = {
 
 export const actions = {
   async fetchCounter(context) {
-    const res = [
-      {
-        display: "grid",
-        name: "Contador nº 1",
-        index: 0,
-        value: 3,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 2",
-        index: 1,
-        value: 2,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 3",
-        index: 2,
-        value: 11,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 4",
-        index: 3,
-        value: 3,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 5",
-        index: 4,
-        value: 2,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 6",
-        index: 5,
-        value: 11,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 7",
-        index: 6,
-        value: 3,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 8",
-        index: 7,
-        value: 2,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 9",
-        index: 8,
-        value: 11,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 10",
-        index: 9,
-        value: 3,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 11",
-        index: 10,
-        value: 2,
-      },
-      {
-        display: "grid",
-        name: "Contador nº 12",
-        index: 11,
-        value: 11,
-      },
-    ];
-    context.commit("loadCounterList", res);
+    const localStorageCounter = nuxtStorage.localStorage.getData("counter");
+    context.commit(
+      "loadCounterList",
+      localStorageCounter ? localStorageCounter : []
+    );
   },
 };

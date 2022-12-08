@@ -111,7 +111,10 @@ export default {
 
     // Adds counter
     addCounter(name, index) {
-      if (this.counters.length < 20) {
+      if (
+        (this.counters && this.counters.length && this.counters.length < 20) ||
+        this.counters.length === 0
+      ) {
         this.$store.commit("addCounter", {
           name,
           index,
@@ -151,7 +154,10 @@ export default {
     hideModalRetrieveInput(retrieve) {
       this.showModal = false;
       if (retrieve) {
-        this.addCounter(this.$store.state.inputValue, this.counters.length);
+        this.addCounter(
+          this.$store.state.inputValue,
+          this.counters && this.counters.length ? this.counters.length : 0
+        );
       }
     },
 

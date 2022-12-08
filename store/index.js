@@ -60,7 +60,7 @@ export const mutations = {
     },
 
     removeCounter(state, index) {
-        state.list.splice(state.list.indexOf(index), 1)
+        state.list.splice(index, 1)
     },
 
     resetFilters(state) {

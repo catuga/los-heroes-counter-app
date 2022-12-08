@@ -10,8 +10,6 @@
       <button @click="sortByName('desc', 'value')">Ordenar descendente por valor</button>
 
       <hr />
-      <!-- Mostrar contadores menores a: <input type="number" min="0" max="20" @input="filterByMinValue" />
-      Mostrar contadores mayores a: <input type="number" min="0" max="20" @input="filterByMaxValue"/> -->
 
       <input type="text" id="min" placeholder="min" v-model="minValue" value="0">
       <input type="text" id="max" placeholder="max" v-model="maxValue" value="20">
